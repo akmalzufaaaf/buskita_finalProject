@@ -8,25 +8,29 @@ class Admin:
     def adminRegistration(self):
         print("----------------------------------------------------------------")
         print()
-        with open("adminCredential.csv",'w',newline="") as f:
+        with open("adminCredential.csv",'a',newline="") as f:
             w =  csv.writer(f)
             self.username = input("Masukkan username    :")
             self.password = input("Masukkan password    :")
             #saving a data into database
             w.writerow([self.username,self.password])
+            f.close()
             print("Registration successfully")
         print()
         print("----------------------------------------------------------------")
             
     def adminLogin(self):
-        actList=[] #list for storing data and retrieving from adminCredential.csv file
+        username = []
+        password = []
         
         with open("adminCredential.csv",'r+',newline="") as f:
             r =  csv.reader(f)
             data = list(r)
+            #print(data)
+            
             for i in data:
-                for j in i:
-                    actList.append(j)
+                username.append(i[0])
+                password.append(i[1])
 
         #print(actList)
         while(True):
@@ -34,12 +38,15 @@ class Admin:
             print()
             self.username = input("Masukkan  username  :")
             self.password = input("Masukkan  password  :")
-            if self.username == str(actList[0]) and self.password == str(actList[1]):
-                print()
-                print("Login successfully")
-                break
+            for i in range(len(username)):
+                if self.username == username[i] and self.password == password[i]:
+                        print()
+                        print("Login Succesfully!")
+                        break
             else:
-                print("Enter correct username and password")
+                print("Masukkan username dan password yang tepat!")
+                continue
+            
             print()
             print("---------------------------------------------------------------")
-
+            break
