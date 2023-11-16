@@ -64,49 +64,45 @@ class PassengerRegistration():
         self.ddmmyyyy = input("Masukkan tanggal keberangkatan 07-05-1992 : ")  #Date of Journey
 
         #Booking Seat Start 
-        print("[1]__[2]__[3]__[4]__[5]__[6]__[7]__[8]__[9]__[10]")
-        print("[11]_[12]_[13]_[14]_[15]_[16]_[17]_[18]_[19]_[20]")
-        print("[21]_[22]_[23]_[24]_[25]_[26]_[27]_[28]_[29]_[30]")
-
-        seatNoList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-        self.bookingList=[]
+        num = 0
         while True:
-            try:
-                self.seatNo = int(input("Pilih nomor kursi: "))
-            except:
-                print("Hanya masukkan angka!")
-                continue
-            
-            if self.seatNo <=30:
-                if  self.seatNo in seatNoList:
-                    self.bookingList.append(self.seatNo)
-                    del seatNoList[self.seatNo+1]
-                    count = len(seatNoList)
-                else:
-                    print("Kursi sudah dipesan!")
-                
-                print(" 1. Eksekutif : Rp 50.000,00")
-                print(" 2. Ekonomi : Rp 15.000,00")
-                self.busType = int(input("Pilih Tipe Bus : "))
-        
-                if self.busType == 1:
-                    self.selectBusType = "Eksekutif"
-                    self.busFare = self.noOfPassenger*50000
-                elif self.busType == 2:
-                    self.selectBusType = "Ekonomi"
-                    self.busFare = self.noOfPassenger*15000
+            print("[1]__[2]__[3]__[4]__[5]__[6]__[7]__[8]__[9]__[10]")
+            print("[11]_[12]_[13]_[14]_[15]_[16]_[17]_[18]_[19]_[20]")
+            print("[21]_[22]_[23]_[24]_[25]_[26]_[27]_[28]_[29]_[30]")
 
-                print("Apakah kamu ingin memesan tiket lagi [yes/no]? ") 
-                y = input("").lower()
-                if y == "yes":
-                    pass
-                elif y == "no":
-                    break
-                else:
-                    print("Pilih yes/no!")
+            seatNoList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+            self.bookingList=[]
+
+            if num < self.noOfPassenger:
+                try:
+                    self.seatNo = int(input("Pilih nomor kursi: "))
+                except:
+                    print("Hanya masukkan angka!")
+                    continue
+            
+                if self.seatNo <=30:
+                    if  self.seatNo in seatNoList:
+                        self.bookingList.append(self.seatNo)
+                        del seatNoList[self.seatNo+1]
+                        count = len(seatNoList)
+                    else:
+                        print("Kursi sudah dipesan!")
+                num += 1
             else:
-                print("Kursi yang dipilih tidak tersedia!")    
+                break
+            
+        print(" 1. Eksekutif : Rp 5.000,00")
+        print(" 2. Ekonomi : Rp 3.500,00")
+        self.busType = int(input("Pilih Tipe Bus : "))
+        
+        if self.busType == 1:
+            self.selectBusType = "Eksekutif"
+            self.busFare = self.noOfPassenger*5000
+        elif self.busType == 2:
+            self.selectBusType = "Ekonomi"
+            self.busFare = self.noOfPassenger*3500
         # Booking Seat END
+
 #=============================================
 #saving Passenger Data into csv File
 #=============================================
