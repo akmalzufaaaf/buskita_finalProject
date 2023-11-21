@@ -12,6 +12,7 @@ print()
 def start(): #called function
     print("1. Buat Akun Baru")
     print("2. Login       ")
+    print("3. Exit ")
     print()
     adminObj = Admin()
     ch = int(input("Pilih sesuai dengan nomornya: "))
@@ -21,7 +22,7 @@ def start(): #called function
         adminObj.adminRegistration()
         start()
         
-    if ch == 2:
+    elif ch == 2:
         
         adminObj.adminLogin()
 
@@ -46,6 +47,8 @@ def start(): #called function
         elif ch ==2:
             obj = TicketShow()
             obj.ticketShow()
+    else:
+        print("Terima kasih telah menggunakan BusKita!")
 
 start()#calling function
 #=======================================================================
