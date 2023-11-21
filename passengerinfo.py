@@ -50,28 +50,33 @@ class PassengerRegistration():
         print("3: Gamping")
         print("4: Aditsutjipto")
         # Enter destination Location Name START
-        self.dpl = int(input("Masukkan lokasi tujuan : "))
-        if self.dpl == 1:
-            self.destinationLocation = "Giwangan"
-        elif self.dpl == 2:
-            self.destinationLocation = "Jombor"
-        elif self.dpl == 3:
-            self.destinationLocation = "Gamping"
-        elif self.dpl == 4:
-            self.destinationLocation = "Aditsutjipto"
-        # Enter destination Location Name END
+        while True:
+            self.dpl = int(input("Masukkan lokasi tujuan : "))
+            if self.dl != self.dpl:
+                if self.dpl == 1:
+                    self.destinationLocation = "Giwangan"
+                elif self.dpl == 2:
+                    self.destinationLocation = "Jombor"
+                elif self.dpl == 3:
+                    self.destinationLocation = "Gamping"
+                elif self.dpl == 4:
+                    self.destinationLocation = "Aditsutjipto"
+                break
+            else:
+                print("Pilih destinasi lain!")
+                continue
+            # Enter destination Location Name END
 
         self.ddmmyyyy = input("Masukkan tanggal keberangkatan 07-05-1992 : ")  #Date of Journey
 
         #Booking Seat Start 
         num = 0
+        seatNoList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
+        self.bookingList=[]
         while True:
             print("[1]__[2]__[3]__[4]__[5]__[6]__[7]__[8]__[9]__[10]")
             print("[11]_[12]_[13]_[14]_[15]_[16]_[17]_[18]_[19]_[20]")
             print("[21]_[22]_[23]_[24]_[25]_[26]_[27]_[28]_[29]_[30]")
-
-            seatNoList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
-            self.bookingList=[]
 
             if num < self.noOfPassenger:
                 try:
@@ -81,13 +86,13 @@ class PassengerRegistration():
                     continue
             
                 if self.seatNo <=30:
-                    if  self.seatNo in seatNoList:
+                    if self.seatNo in seatNoList:
                         self.bookingList.append(self.seatNo)
-                        del seatNoList[self.seatNo+1]
-                        count = len(seatNoList)
+                        seatNoList.remove(self.seatNo)
+                        print(seatNoList)
+                        num += 1
                     else:
                         print("Kursi sudah dipesan!")
-                num += 1
             else:
                 break
             
@@ -118,7 +123,7 @@ class PassengerDataCsv(PassengerRegistration):
                     for j in i:
                         self.countcol +=1
                     print()
-                print("Number of Records Are Found In Database :",self.autoInc)    
+                print("ID Ticket kamu : ",self.autoInc)    
             
         except:
             print("File has not available")
