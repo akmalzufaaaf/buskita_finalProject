@@ -123,8 +123,7 @@ class PassengerDataCsv(PassengerRegistration):
                     for j in i:
                         self.countcol +=1
                     print()
-                print("ID Ticket kamu : ",self.autoInc)    
-            
+                print("ID Ticket kamu : ",self.autoInc)     
         except:
             print("File has not available")
         finally:     
