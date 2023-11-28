@@ -13,7 +13,8 @@ def choose_payment_method():
     with open("passengerData.csv",'r+',newline="") as f:
         r =  csv.reader(f)
         data = list(r)
-    total = int(data[-1][-1]) * int(data[-1][2]) 
+    total = int(data[-1][-1])
+    id = int(data[-1][0])
      
     print(f"Total yang harus dibayarkan : {total}")
     print("Pilih metode pembayaran:")
@@ -39,11 +40,6 @@ def choose_payment_method():
 
     except ValueError:
         print("Invalid input. Please enter an integer.")
-
-
-def main():
-    choose_payment_method()
-
-
-if __name__ == "__main__":
-    main()
+    
+    print("Lihat detail tiket kamu pada menu Lihat Tiket!")
+    print(f"ID Tiket : {id}")
