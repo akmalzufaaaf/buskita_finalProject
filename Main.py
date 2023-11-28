@@ -1,6 +1,7 @@
 from passengerinfo import*
 from TicketShow import*
 from admin import*
+from payment import *
 
 global ch # declare global variable
 
@@ -35,7 +36,8 @@ def start(): #called function
             pd_obj = PassengerDataCsv()
             pd_obj.getPassengerInfo()
             pd_obj.saveInfo()
-
+            choose_payment_method()
+            
             print("Apakah kamu ingin memesan tiket lagi [yes/no]? ") 
             y = input("").lower()
             if y == "yes":
