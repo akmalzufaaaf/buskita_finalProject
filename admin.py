@@ -40,9 +40,9 @@ class Admin:
             self.password = input("Masukkan  password  :")
             for i in range(len(username)):
                 if self.username == username[i] and self.password == password[i]:
-                        print()
-                        print("Login Succesfully!")
-                        break
+                    print()
+                    print("Login Succesfully!")
+                    break
             else:
                 print("Masukkan username dan password yang tepat!")
                 continue
