@@ -1,32 +1,39 @@
 from passengerinfo import*
 from TicketShow import*
 from admin import*
-from payment import *
+from payment import*
 
 global ch # declare global variable
+y = "no"
 
 print("-----------------------------------------------------")
 print("              Welcome to BusKita                     ")
 print("-----------------------------------------------------")
 print()
 
-def start(): #called function
+def menu():
+    global ch
     print("1. Buat Akun Baru")
     print("2. Login       ")
     print("3. Exit ")
     print()
-    adminObj = Admin()
     ch = int(input("Pilih sesuai dengan nomornya: "))
 
+def start(): #called function
+    global ch
+    adminObj = Admin()
     if ch == 1:
         #admin class object creation
         adminObj.adminRegistration()
+        menu()
         start()
         
     elif ch == 2:
+        if y == "no":
+            adminObj.adminLogin()
+        elif y == "yes":
+            adminObj.second_Log()
         
-        adminObj.adminLogin()
-
         print()
         print("1. Pesan tiket")
         print("2. Lihat tiket")
@@ -37,20 +44,35 @@ def start(): #called function
             pd_obj.getPassengerInfo()
             pd_obj.saveInfo()
             choose_payment_method()
-            
-            print("Apakah kamu ingin memesan tiket lagi [yes/no]? ") 
-            y = input("").lower()
-            if y == "yes":
-                pd_obj.getPassengerInfo()
-            elif y == "no":
-                start()
-            else:
-                print("Pilih yes/no!")  
-        elif ch ==2:
+              
+        elif ch == 2:
             obj = TicketShow()
             obj.ticketShow()
-    else:
+    elif ch == 3:
         print("Terima kasih telah menggunakan BusKita!")
+    else:
+        print("Perintah tidak tersedia silahkan masukkan ulang!")
+        menu()
+        start()
 
-start()#calling function
+def pesan_lagi():
+    global ch
+    global y
+    print("Apakah anda masih ingin berada di Aplikasi BusKita? [yes/no] ") 
+    y = input("").lower()
+    if y == "yes":
+        ch = 2
+        start()
+        pesan_lagi()
+    elif y == "no":
+        print("Terima kasih telah menggunakan BusKita!")
+    else:
+        print("Pilih yes/no saja!")
+
+if __name__ == "__main__":
+    menu()
+    start()
+    pesan_lagi()
+    
+#calling function
 #=======================================================================
