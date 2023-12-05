@@ -27,7 +27,7 @@ def choose_payment_method():
     payment3 = PaymentMethod("E-Wallet", "1234 5678 9012 3456")
 
     try:
-        choice = int(input("Enter your choice: "))
+        choice = int(input("Masukkan pilihan: "))
 
         if choice == 1:
             payment1.show_method()
@@ -36,10 +36,19 @@ def choose_payment_method():
         elif choice == 3:
             payment3.show_method()
         else:
-            print("Invalid choice. Please enter 1, 2, or 3.")
+            print("Pilihan tidak tersedia. Pilih 1, 2, atau 3.")
 
     except ValueError:
-        print("Invalid input. Please enter an integer.")
+        print("Masukkan nilai integer saja.")
+        print()
+        choose_payment_method()
     
     print("Lihat detail tiket kamu pada menu Lihat Tiket!")
     print(f"ID Tiket : {id}")
+
+def main():
+    choose_payment_method()
+
+
+if __name__ == "__main__":
+    main()
