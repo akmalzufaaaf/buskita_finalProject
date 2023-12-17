@@ -16,6 +16,8 @@ def choose_payment_method():
     total = int(data[-1][-1])
     id = int(data[-1][0])
      
+    print()
+    print("-----------------------------------------------------")
     print(f"Total yang harus dibayarkan : {total}")
     print("Pilih metode pembayaran:")
     print("1. Cash")
@@ -28,6 +30,8 @@ def choose_payment_method():
 
     try:
         choice = int(input("Masukkan pilihan: "))
+        print("-----------------------------------------------------")
+        print()
 
         if choice == 1:
             payment1.show_method()
@@ -37,18 +41,15 @@ def choose_payment_method():
             payment3.show_method()
         else:
             print("Pilihan tidak tersedia. Pilih 1, 2, atau 3.")
+            print("-----------------------------------------------------")
 
     except ValueError:
         print("Masukkan nilai integer saja.")
+        print("-----------------------------------------------------")
         print()
         choose_payment_method()
     
+    print()
     print("Lihat detail tiket kamu pada menu Lihat Tiket!")
     print(f"ID Tiket : {id}")
-
-def main():
-    choose_payment_method()
-
-
-if __name__ == "__main__":
-    main()
+    print("Selamat data kamu berhasil disimpan!")
