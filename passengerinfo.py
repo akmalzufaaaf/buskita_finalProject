@@ -12,7 +12,7 @@ class PassengerRegistration():
         self.selectBusType = None
         self.busFare = None
         self.autoInc = 1
-        self.countcol= 0
+        self.countcol = 0
         
     def getPassengerInfo(self):
         self.passengerName     = input("Masukkan Nama :")
@@ -74,11 +74,11 @@ class PassengerRegistration():
         seatNoList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]
         self.bookingList=[]
         while True:
-            print("[1]__[2]__[3]__[4]__[5]__[6]__[7]__[8]__[9]__[10]")
-            print("[11]_[12]_[13]_[14]_[15]_[16]_[17]_[18]_[19]_[20]")
-            print("[21]_[22]_[23]_[24]_[25]_[26]_[27]_[28]_[29]_[30]")
-
             if num < self.noOfPassenger:
+                print("[1]__[2]__[3]__[4]__[5]__[6]__[7]__[8]__[9]__[10]")
+                print("[11]_[12]_[13]_[14]_[15]_[16]_[17]_[18]_[19]_[20]")
+                print("[21]_[22]_[23]_[24]_[25]_[26]_[27]_[28]_[29]_[30]")
+
                 try:
                     self.seatNo = int(input("Pilih nomor kursi: "))
                 except:
@@ -89,13 +89,14 @@ class PassengerRegistration():
                     if self.seatNo in seatNoList:
                         self.bookingList.append(self.seatNo)
                         seatNoList.remove(self.seatNo)
-                        print(seatNoList)
+                        #print(seatNoList)
                         num += 1
                     else:
                         print("Kursi sudah dipesan!")
             else:
                 break
-            
+        
+        print()    
         print(" 1. Eksekutif : Rp 5.000,00")
         print(" 2. Ekonomi : Rp 3.500,00")
         self.busType = int(input("Pilih Tipe Bus : "))
@@ -122,8 +123,8 @@ class PassengerDataCsv(PassengerRegistration):
                     self.autoInc += 1
                     for j in i:
                         self.countcol +=1
-                    print()
-                print("ID Ticket kamu : ",self.autoInc)     
+                    #print()
+                #print("ID Ticket kamu : ",self.autoInc)     
         except:
             print("File has not available")
         finally:     
@@ -131,8 +132,8 @@ class PassengerDataCsv(PassengerRegistration):
                 w =  csv.writer(f)
                 #w.writerow(["Auto Increment","passenger Name","Number of Passenger","Departure Location","Destination Location","ddmmyyyy","Seat No","Select Bus Type","Bus Fare"])
                 w.writerow([self.autoInc,self.passengerName,self.noOfPassenger,self.departureLocation,self.destinationLocation,self.ddmmyyyy,self.bookingList,self.selectBusType,self.busFare])
-                print("Data Save successfully")
-                print()
+                #print("Data Save successfully")
+                #print()
         
 
 '''pd_obj = PassengerDataCsv()
