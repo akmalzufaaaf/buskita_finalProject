@@ -4,6 +4,7 @@ from admin import*
 from payment import*
 
 global ch # declare global variable
+global y 
 y = "no"
 
 print("-----------------------------------------------------")
@@ -13,11 +14,16 @@ print()
 
 def menu():
     global ch
+    ch = False
     print("1. Buat Akun Baru")
     print("2. Login       ")
     print("3. Exit ")
     print()
-    ch = int(input("Pilih sesuai dengan nomornya: "))
+    while ch == False:
+        try:
+            ch = int(input("Pilih sesuai dengan nomornya: "))
+        except:
+            print("Tolong hanya masukkan angka.")
 
 def start(): #called function
     global ch
@@ -34,18 +40,23 @@ def start(): #called function
         elif y == "yes":
             adminObj.second_Log()
         
+        choice = False
         print()
         print("1. Pesan tiket")
         print("2. Lihat tiket")
         print()
-        ch = int(input("Pilih opsi: "))
-        if ch == 1:
+        while choice == False:
+            try:
+                choice = int(input("Pilih opsi: "))
+            except:
+                print("Tolong hanya masukkan angka.")
+        if choice == 1:
             pd_obj = PassengerDataCsv()
             pd_obj.getPassengerInfo()
             pd_obj.saveInfo()
             choose_payment_method()
               
-        elif ch == 2:
+        elif choice == 2:
             obj = TicketShow()
             obj.ticketShow()
     elif ch == 3:
@@ -58,21 +69,30 @@ def start(): #called function
 def pesan_lagi():
     global ch
     global y
-    print("Apakah anda masih ingin berada di Aplikasi BusKita? [yes/no] ") 
-    y = input("").lower()
-    if y == "yes":
-        ch = 2
-        start()
-        pesan_lagi()
-    elif y == "no":
-        print("Terima kasih telah menggunakan BusKita!")
-    else:
-        print("Pilih yes/no saja!")
+    
+    y = False
+    while y == False:
+        print("Apakah anda masih ingin berada di Aplikasi BusKita? [yes/no] ") 
+        y = input("").lower()
+        if y == "yes":
+            print("-----------------------------------------------------")
+            ch = 2
+            start()
+            pesan_lagi()
+        elif y == "no":
+            print("-----------------------------------------------------")
+            print("Terima kasih telah menggunakan BusKita!")
+            print("-----------------------------------------------------")
+        else:
+            print("Pilih yes/no saja!")
 
-if __name__ == "__main__":
+def main():
     menu()
     start()
-    pesan_lagi()
+    if ch !=3:
+        pesan_lagi()
     
+if __name__ == "__main__":
+    main()
 #calling function
 #=======================================================================
